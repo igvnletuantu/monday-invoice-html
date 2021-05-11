@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>recipe</title>
+    <style>
+        body {
+            background: rgb(204, 204, 204);
+            font-family: sans-serif;
+        }
+
+        page {
+            background: white;
+            display: block;
+            margin: 0 auto;
+            margin-bottom: 0.5cm;
+            box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);
+            padding: 0.3cm;
+        }
+
+        page[size="A4"] {
+            width: 21cm;
+            height: 29.7cm;
+        }
+
+        @media print {
+            body, page {
+                margin: 0;
+                box-shadow: 0 0 0
+            }
+        }
+
+        p {
+            margin-block-start: 0.05cm;
+            margin-block-end: 0.05cm;
+        }
+
+        .font-size-04 {
+            font-size: 0.4cm !important;
+            font-weight: 300 !important;
+        }
+
+        .font-size-03 {
+            font-size: 0.3cm !important;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .margin-block-0 {
+            margin-block: 0 !important;
+        }
+
+        .margin-top-03 {
+            margin-top: 0.3cm !important;
+        }
+
+        .margin-left-01 {
+            margin-left: 0.1cm !important;
+        }
+
+        .div-item-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .rc-title-ja {
+            font-weight: 400;
+            margin-block-start: 0.05cm;
+            margin-block-end: 0.05cm;
+            font-size: 0.35cm;
+        }
+
+        .rc-title-eng {
+            font-weight: 400;
+            margin-block-start: 0.05cm;
+            margin-block-end: 0.05cm;
+            font-size: 0.27cm;
+        }
+
+        /* header recipe info */
+        .header-recipe {
+            position: absolute;
+            left: 50%;
+        }
+
+        .header-recipe .rc-company-name {
+            font-size: 0.6cm !important;
+            margin-block-start: 0;
+            margin-block-end: 0.1cm;
+            text-align: center;
+            font-weight: 400 !important;
+        }
+
+        .header-recipe .rc-hotel-name {
+            text-align: center;
+            font-size: 0.25cm !important;
+            margin-block-start: 0;
+            margin-block-end: 0.05cm;
+            font-style: italic;
+        }
+
+        .header-recipe .rc-statement-use {
+            text-align: center;
+            margin-block-start: 0.05cm;
+            margin-block-end: 0.05cm;
+            font-weight: 400 !important;
+        }
+
+        /* header hotel info */
+
+        .header-hotel-info {
+            margin-left: 67%;
+            width: 29%;
+            height: max-content;
+            background-color: white;
+            margin-top: 3cm;
+            margin-right: 1.1cm;
+        }
+
+        .header-hotel-info table {
+            width: 100%
+        }
+
+        .header-hotel-info table td {
+            font-size: 0.27cm !important;
+            font-weight: 400 !important;
+        }
+
+        .header-hotel-info .rc-hotel-info-column-left {
+            vertical-align: top !important;
+            padding-top: 0;
+            padding-bottom: 0 !important;
+        }
+
+        .header-hotel-info .rc-hotel-info-column-right {
+            padding-left: 0.15cm;
+            padding-top: 0;
+            padding-bottom: 0 !important;
+        }
+
+        .header-hotel-info .rc-page-count {
+            width: inherit;
+            text-align: right;
+            margin-block-start: 0;
+            margin-block-end: 0;
+            font-size: 0.32cm !important;
+        }
+
+        /* content-recipe-info */
+
+        .content-recipe-info {
+            width: 92%;
+            margin-left: 4%;
+            background-color: white;
+            height: 3.3cm;
+        }
+
+        .content-recipe-info .recipe-info-first {
+            width: 100%;
+            height: 50%;
+            background-color: white;
+        }
+
+        .content-recipe-info .recipe-info-first .rc-room-no {
+            width: 20%;
+            height: 100%;
+            float: left;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            border: black solid 0.075cm;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .content-recipe-info .recipe-info-first .rc-customer-name {
+            width: 60%;
+            height: 100%;
+            float: left;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            border: black solid 0.075cm;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .content-recipe-info .recipe-info-first .rc-person-count {
+            width: 20%;
+            height: 100%;
+            float: left;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            border: black solid 0.075cm;
+            border-bottom: none;
+        }
+
+        .content-recipe-info .recipe-info-last {
+            width: 100%;
+            height: 50%;
+            background-color: white;
+        }
+
+        .content-recipe-info .recipe-info-last .rc-arrival {
+            width: 17%;
+            height: 100%;
+            float: left;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            border: black solid 0.075cm;
+            border-right: none;
+        }
+
+        .content-recipe-info .recipe-info-last .rc-departure {
+            width: 17%;
+            height: 100%;
+            float: left;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            border: black solid 0.075cm;
+            border-right: none;
+        }
+
+        .content-recipe-info .recipe-info-last .rc-remark {
+            width: 41%;
+            height: 100%;
+            float: left;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            border: black solid 0.075cm;
+            border-right: none;
+        }
+
+        .content-recipe-info .recipe-info-last .rc-day-time-issued {
+            width: 25%;
+            height: 100%;
+            float: left;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            border: black solid 0.075cm;
+        }
+
+        /* content payment info */
+        .content-payment-info {
+            width: 92%;
+            margin-left: 4%;
+            background-color: white;
+            height: 12.6cm;
+            margin-top: 0.4cm;
+        }
+
+        .content-payment-info .payment-info-title {
+            width: 100%;
+            height: 1cm;
+            background-color: white;
+        }
+
+        .content-payment-info .payment-info-content {
+            width: 100%;
+            height: 11.6cm;
+            background-color: white;
+        }
+
+        .payment-info-title .rc-date {
+            width: 8%;
+            height: 100%;
+            float: left;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            border: black solid 0.075cm;
+            border-right: none;
+            border-bottom: none;
+            text-align: center;
+        }
+
+        .payment-info-title .rc-room-no {
+            width: 12%;
+            height: 100%;
+            float: left;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            border: black solid 0.075cm;
+            border-right: none;
+            border-bottom: none;
+            text-align: center;
+        }
+
+        .payment-info-title .rc-explanation {
+            width: 31%;
+            height: 100%;
+            float: left;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            border: black solid 0.075cm;
+            border-right: none;
+            border-bottom: none;
+            text-align: center;
+        }
+
+        .payment-info-title .rc-amount {
+            width: 12%;
+            height: 100%;
+            float: left;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            border: black solid 0.075cm;
+            border-right: none;
+            border-bottom: none;
+            text-align: center;
+        }
+
+        .payment-info-title .rc-payment {
+            width: 12%;
+            height: 100%;
+            float: left;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            border: black solid 0.075cm;
+            border-right: none;
+            border-bottom: none;
+            text-align: center;
+        }
+
+        .payment-info-title .rc-remarks {
+            width: 25%;
+            height: 100%;
+            float: left;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            border: black solid 0.075cm;
+            border-bottom: none;
+            text-align: center;
+        }
+
+        .payment-info-content .rc-date {
+            width: 8%;
+            height: 100%;
+            float: left;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            border: black solid 0.075cm;
+            border-right: none;
+        }
+
+        .payment-info-content .rc-room-no {
+            width: 12%;
+            height: 100%;
+            float: left;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            border: black solid 0.075cm;
+            border-right: none;
+        }
+
+        .payment-info-content .rc-explanation {
+            width: 31%;
+            height: 100%;
+            float: left;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            border: black solid 0.075cm;
+            border-right: none;
+        }
+
+        .payment-info-content .rc-amount {
+            width: 12%;
+            height: 100%;
+            float: left;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            border: black solid 0.075cm;
+            border-right: none;
+        }
+
+        .payment-info-content .rc-payment {
+            width: 12%;
+            height: 100%;
+            float: left;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            border: black solid 0.075cm;
+            border-right: none;
+        }
+
+        .payment-info-content .rc-remarks {
+            width: 25%;
+            height: 100%;
+            float: left;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            border: black solid 0.075cm;
+        }
+
+        .recipe-summary {
+            width: 92%;
+            margin-right: 4%;
+            margin-left: 4%;
+            margin-top: 0.3cm;
+            height: 6.5cm;
+        }
+
+        .payment-info-content .rc-explanation-content {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: auto
+        }
+
+        .recipe-summary .recipe-summary-left {
+            width: 51%;
+            height: inherit;
+            float: left;
+            position: relative
+        }
+
+        .recipe-summary .recipe-summary-center {
+            width: 24%;
+            height: inherit;
+            float: left;
+            margin-top: 0.2cm
+        }
+
+        .recipe-summary .recipe-summary-right {
+            width: 25%;
+            height: inherit;
+            float: left;
+        }
+
+        .recipe-summary-left .item {
+            width: 84%;
+            height: 1.2cm;
+            border-bottom: 0.075cm solid;
+            margin-left: 8%;
+            margin-right: 8%;
+        }
+
+        .recipe-summary-left .item-bottom {
+            width: 84%;
+            height: auto;
+            margin-left: 8%;
+            margin-right: 8%;
+            position: absolute;
+            bottom: 0
+        }
+
+        .recipe-summary-center .item {
+            width: 100%;
+            height: 1.2cm;
+            border-bottom: 0.075cm solid;
+            position: relative
+        }
+
+        .div-bottom-left {
+            width: max-content;
+            position: absolute;
+            bottom: 0;
+            left: 0
+        }
+
+        .div-bottom-right {
+            width: max-content;
+            position: absolute;
+            bottom: 0;
+            right: 0
+        }
+
+    </style>
+</head>
+<body>
+<page size="A4">
+    <div class="header-recipe">
+        <div style="position: relative; left: -50%;">
+                <span style="text-align: center;  display: block">
+                    <img src="img/icon_recipe.png" alt="">
+                </span>
+            <h3 class="rc-company-name">MON day</h3>
+            <h4 class="rc-hotel-name">hotel ASAKUSA</h4>
+            <h4 class="rc-statement-use">ご利用明細書</h4>
+            <h4 class="rc-statement-use">STATEMENT</h4>
+        </div>
+    </div>
+
+    <div class="header-hotel-info">
+        <table>
+            <tr>
+                <td class="rc-hotel-info-column-left">日付</td>
+                <td class="rc-hotel-info-column-right">21/02/18</td>
+            </tr>
+            <tr>
+                <td class="rc-hotel-info-column-left">住所</td>
+                <td class="rc-hotel-info-column-right">〒東京都台東区浅草2-26-7</td>
+            </tr>
+            <tr>
+                <td class="rc-hotel-info-column-left">Phone</td>
+                <td class="rc-hotel-info-column-right">03-5830-8532</td>
+            </tr>
+            <tr>
+                <td class="rc-hotel-info-column-left">FAX</td>
+                <td class="rc-hotel-info-column-right">03-5830-8532</td>
+            </tr>
+            <tr>
+                <td class="rc-hotel-info-column-left">Clerk</td>
+                <td class="rc-hotel-info-column-right">CHIU HAOYU</td>
+            </tr>
+        </table>
+        <div style="width: 100%;">
+            <p class="rc-page-count">1/1</p>
+        </div>
+    </div>
+
+    <div class="content-recipe-info">
+        <div class="recipe-info-first">
+            <div class="rc-room-no">
+                <p class="rc-title-ja">部屋番号 <span class="rc-title-eng">ROOM No.</span></p>
+                <h4 class="rc-title-ja font-size-04 text-center margin-top-03">206</h4>
+            </div>
+            <div class="rc-customer-name">
+                <div style="width: max-content; height: inherit; float: left">
+                    <p class="rc-title-ja">お名前 <span class="rc-title-eng">NAME</span></p>
+                    <h4 class="rc-title-ja font-size-04 text-center margin-top-03">テスト</h4>
+                </div>
+                <div style="width: max-content; height: inherit; float: right">
+                    <p class="rc-title-ja margin-block-0" style="margin-top: 0.5cm !important;">Mr. Ms.</p>
+                    <h4 class="rc-title-ja font-size-04 text-center margin-block-0">様</h4>
+                </div>
+            </div>
+            <div class="rc-person-count">
+                <p class="rc-title-ja">ご人数 <span class="rc-title-eng">PERSONS</span></p>
+                <h4 class="rc-title-ja font-size-04 text-center margin-top-03">1</h4>
+            </div>
+        </div>
+        <div class="recipe-info-last">
+            <div class="rc-arrival">
+                <p class="rc-title-ja">ご到着日 <span class="rc-title-eng">ARRIVAL</span></p>
+                <h4 class="rc-title-ja font-size-04 text-center margin-top-03">01/16</h4>
+            </div>
+            <div class="rc-departure">
+                <p class="rc-title-ja">ご出発日 <span class="rc-title-eng">DEPARTURE</span></p>
+                <h4 class="rc-title-ja font-size-04 text-center margin-top-03">01/07</h4>
+            </div>
+            <div class="rc-remark">
+                <p class="rc-title-ja">備考 <span class="rc-title-eng">REMARKS</span></p>
+                <h4 class="rc-title-ja margin-top-03" style="margin-left: 0.2cm"></h4>
+            </div>
+            <div class="rc-day-time-issued">
+                <p class="rc-title-ja">発行日付 <span class="rc-title-eng">DAY TIME ISSUED</span></p>
+                <h4 class="rc-title-ja font-size-04 text-center margin-top-03">21/12/08 18:28:26</h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-payment-info">
+        <div class="payment-info-title">
+            <div class="rc-date">
+                <p class="rc-title-ja margin-block-0">日付</p>
+                <p class="rc-title-eng margin-block-0">DATE</p>
+            </div>
+            <div class="rc-room-no">
+                <p class="rc-title-ja margin-block-0">部屋番号</p>
+                <p class="rc-title-eng margin-block-0">ROOM No.</p>
+            </div>
+            <div class="rc-explanation">
+                <p class="rc-title-ja margin-block-0">ご利用明細</p>
+                <p class="rc-title-eng margin-block-0">EXPLANATION</p>
+            </div>
+            <div class="rc-amount">
+                <p class="rc-title-ja margin-block-0">ご利用金額</p>
+                <p class="rc-title-eng margin-block-0">AMOUNT</p>
+            </div>
+            <div class="rc-payment">
+                <p class="rc-title-ja margin-block-0">お預り金額</p>
+                <p class="rc-title-eng margin-block-0">PAYMENT</p>
+            </div>
+            <div class="rc-remarks">
+                <p class="rc-title-ja margin-block-0">備考</p>
+                <p class="rc-title-eng margin-block-0">REMARKS</p>
+            </div>
+        </div>
+        <div class="payment-info-content">
+            <div class="rc-date">
+                <p class="font-size-04 text-center">01/16</p>
+            </div>
+            <div class="rc-room-no">
+                <p class="font-size-04 text-center">206</p>
+            </div>
+            <div class="rc-explanation" style="position: relative">
+                <div>
+                    <p class="font-size-04">ご宿泊代</p>
+                </div>
+                <div class="rc-explanation-content">
+                    <table style="width: 100%">
+                        <tr>
+                            <td class="font-size-04">10%対象</td>
+                            <td class="font-size-04 text-right">¥20,000</td>
+                        </tr>
+                        <tr>
+                            <td class="font-size-04">(内消費税</td>
+                            <td class="font-size-04 text-right">¥1,881)</td>
+                        </tr>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+            <div class="rc-amount">
+                <p class="font-size-04 text-right" style="margin-right: 0.05cm;">20,000</p>
+            </div>
+            <div class="rc-payment">
+                <p class="font-size-04 text-right" style="margin-right: 0.05cm;"></p>
+            </div>
+            <div class="rc-remarks">
+                <p class="font-size-04"></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="recipe-summary">
+        <div class="recipe-summary-left">
+            <div class="item">
+                <p class="rc-title-ja margin-block-0 margin-left-01">会社名</p>
+                <p class="rc-title-eng margin-block-0 margin-left-01">FIRM</p>
+            </div>
+            <div class="item">
+                <p class="rc-title-ja margin-block-0 margin-left-01">ご住所</p>
+                <p class="rc-title-eng margin-block-0 margin-left-01">ADDRESS</p>
+            </div>
+            <div class="item">
+                <p class="rc-title-ja margin-block-0 margin-left-01">ご著名</p>
+                <p class="rc-title-eng margin-block-0 margin-left-01">SIGNATURE</p>
+            </div>
+            <div class="item-bottom">
+                <p class="rc-title-ja margin-block-0 margin-left-01 font-size-03">上記金額には消費税が含まれております。</p>
+                <p class="rc-title-ja margin-block-0 margin-left-01 font-size-03">A consumption tax is included in an
+                    above amount of money.</p>
+                <p class="rc-title-ja margin-block-0 margin-left-01 font-size-03"><span
+                        style="font-size: 0.4cm; font-weight: 300">※</span>印がついている商品は軽減税率対象となります。</p>
+            </div>
+        </div>
+        <div class="recipe-summary-center">
+            <div class="item">
+                <div class="div-bottom-left">
+                    <p class="rc-title-ja margin-block-0 margin-left-01">ご利用金額</p>
+                    <p class="rc-title-eng margin-block-0 margin-left-01">AMOUNT</p>
+                </div>
+                <div class="div-bottom-right">
+                    <p class="rc-title-eng margin-block-0 margin-left-01 font-size-04">20,000</p>
+                </div>
+            </div>
+            <div class="item">
+                <div class="div-bottom-left">
+                    <p class="rc-title-ja margin-block-0 margin-left-01">内消費税</p>
+                    <p class="rc-title-eng margin-block-0 margin-left-01">TAX</p>
+                </div>
+                <div class="div-bottom-right">
+                    <p class="rc-title-eng margin-block-0 margin-left-01 font-size-04">1,818</p>
+                </div>
+            </div>
+            <div class="item">
+                <div class="div-bottom-left">
+                    <p class="rc-title-ja margin-block-0 margin-left-01">お預り金</p>
+                    <p class="rc-title-eng margin-block-0 margin-left-01">PAYMENT</p>
+                </div>
+                <div class="div-bottom-right">
+                    <p class="rc-title-eng margin-block-0 margin-left-01 font-size-04">0</p>
+                </div>
+            </div>
+            <div class="item">
+                <div style="width: max-content; position: absolute; bottom: 0; left: 0">
+                    <p class="rc-title-ja margin-block-0 margin-left-01">ご請求額</p>
+                    <p class="rc-title-eng margin-block-0 margin-left-01">BALANCE</p>
+                </div>
+                <div style="width: max-content; position: absolute; bottom: 0; right: 0">
+                    <p class="rc-title-eng margin-block-0 margin-left-01 font-size-04">20,000</p>
+                </div>
+            </div>
+        </div>
+        <div class="recipe-summary-right">
+            <div>
+                <div class="div-item-center"
+                     style="width: 2cm; height: 2.5cm; border: dotted 1px; margin: 0 auto; margin-top: 1cm!important;">
+                    <p class="rc-title-ja" style="writing-mode: vertical-rl;text-orientation: mixed;">収入印紙</p>
+                </div>
+            </div>
+            <div style="margin-top: 0.3cm;">
+                <p style="margin-left: 0.5cm; font-size: 0.35cm;">004-790-DB</p>
+                <p style="margin-left: 0.5cm; font-size: 0.32cm;">001</p>
+            </div>
+        </div>
+    </div>
+</page>
+</body>
+</html>
